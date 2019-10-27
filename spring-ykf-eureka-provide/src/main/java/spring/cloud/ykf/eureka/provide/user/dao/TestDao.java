@@ -21,5 +21,7 @@ public interface TestDao {
     public Boolean delete(int id);
 
     public List<Menu> queryMenuList(String id);
+    public List<Menu> queryAllMenuList();
+    public List<Menu> queryAllMenuLists();
 
 }

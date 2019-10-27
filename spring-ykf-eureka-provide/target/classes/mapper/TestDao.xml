@@ -8,6 +8,7 @@
         <collection property="children" ofType="Menu" column="id" select="findMenuByParentId"/>
     </resultMap>
 
+
     <select id="queryMenuList" resultMap="recursionMenuMap">
         SELECT * FROM menu WHERE parent_id ='' or parent_id is NULL ORDER BY `id` ASC
     </select>
@@ -16,6 +17,33 @@
         SELECT * FROM menu WHERE parent_id = #{id} ORDER BY `id` ASC
     </select>
 
+    <resultMap type="Menu" id="resultMenuMap">
+        <id column="id" property="id"/>
+        <result column="menu_name" property="menuName"/>
+        <collection property="children" ofType="Menu"  >
+            <id column="cid" property="id"/>
+            <result column="cmenu_name" property="menuName"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryAllMenuList" resultMap="resultMenuMap">
+       select m1.id,m1.menu_name, m2.id cid,m2.menu_name cmenu_name      from menu m1 left join menu m2
+on m1.id=m2.parent_id order by m1.id,m2.id
+    </select>
+
+
+    <resultMap type="Menu" id="MenuMap">
+        <id column="id" property="id"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="menu_name" property="menuName"/>
+        <result column="menu_url" property="menuUrl"/>
+        <result column="itemindex" property="itemIndex"/>
+    </resultMap>
+
+
+    <select id="queryAllMenuLists" resultMap="MenuMap">
+       select *    from menu m1
+    </select>
     <select id="findById" resultType="User" parameterType="int">
          SELECT * FROM users
          <where>
