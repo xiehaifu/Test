@@ -30,7 +30,7 @@
         <zookeeper.version>3.4.5</zookeeper.version>
         <zkclient.version>0.1</zkclient.version>
         <com.alibaba.druid.version>0.2.6</com.alibaba.druid.version>
-        <commons.version>3.2.1</commons.version>
+        <commons.version>3.2.2</commons.version>
         <spring-cloud.version>Dalston.SR2</spring-cloud.version>
     </properties>
     <dependencies>
